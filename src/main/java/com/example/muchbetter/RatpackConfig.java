@@ -39,6 +39,13 @@ public class RatpackConfig {
             // Creates a new user and gives them a preset balance in a preset currency
             .post("login", new LoginHandler())
 
+            // Simple ping to test connectivity
+            .get("ping", ctx -> ctx.render("Pong"))
+
+            // Simple ping with connection to redis
+            .get("ping-redis", ctx -> ctx
+                .render("Redis user count: " + repository.count()))
+
             // Find user by auth token. This is like login plus user lookup.
             .all(this::handleAuthAndUserLookup)
 
