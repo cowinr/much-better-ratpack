@@ -36,11 +36,16 @@ public class RatpackConfig {
     public Action<Chain> api() {
         return chain -> chain
 
+            // Health check endpoint
+            .get(ctx -> ctx
+                .render("Healthy"))
+
             // Creates a new user and gives them a preset balance in a preset currency
             .post("login", new LoginHandler())
 
             // Simple ping to test connectivity
-            .get("ping", ctx -> ctx.render("Pong"))
+            .get("ping", ctx -> ctx
+                .render("Pong"))
 
             // Simple ping with connection to redis
             .get("ping-redis", ctx -> ctx
