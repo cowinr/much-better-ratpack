@@ -5,6 +5,11 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 
+/**
+ * Wraps an amount and currency code.
+ * There is probably a better implementation in https://javamoney.github.io/ri.html such as
+ * https://github.com/JavaMoney/jsr354-ri/blob/master/moneta-core/src/main/java/org/javamoney/moneta/Money.java
+ */
 @Getter
 @AllArgsConstructor
 public class MoneterayAmount {

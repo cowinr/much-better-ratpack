@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import ratpack.spring.config.EnableRatpack;
 
+/**
+ * Bootstrap point for Spring Boot app.
+ */
 @SpringBootApplication
 @EnableRatpack
 public class MuchBetterApplication {

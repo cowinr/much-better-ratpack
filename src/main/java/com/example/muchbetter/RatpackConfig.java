@@ -11,8 +11,12 @@ import ratpack.http.Response;
 import ratpack.jackson.Jackson;
 import ratpack.registry.Registry;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Configuration of Ratpack handler chain
@@ -23,6 +27,8 @@ public class RatpackConfig {
     private UserRepository repository;
 
     private TokenGenerator tokenGenerator;
+
+    private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
     public RatpackConfig(UserRepository repository, TokenGenerator tokenGenerator) {
         this.repository = repository;
@@ -107,7 +113,7 @@ public class RatpackConfig {
      * User's ID is a generated token which is returned as a response header.
      * Subsequent requests use this token for authentication and user identification.
      */
-    private class LoginHandler implements Handler {
+    class LoginHandler implements Handler {
 
         @Override
         public void handle(Context ctx) {
@@ -127,13 +133,15 @@ public class RatpackConfig {
     /**
      * Handles requests to spend money, i.e. apply a transaction that reduces User's balance.
      */
-    private class SpendHandler implements Handler {
+    class SpendHandler implements Handler {
 
         @Override
         public void handle(Context ctx) {
             User user = ctx.get(User.class);
             ctx.parse(Jackson.fromJson(Transaction.class))
                 .then(transaction -> {
+                    Set<ConstraintViolation<Transaction>> violations = VALIDATOR.validate(transaction);
+                    // TODO handle validation errors
                     user.applyTransaction(transaction);
                     repository.save(user);
                 });

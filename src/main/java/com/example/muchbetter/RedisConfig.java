@@ -8,6 +8,9 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
+/**
+ * Spring data magic to wire up DAOs from interface definitions such as {@link UserRepository}.
+ */
 @Configuration
 @EnableRedisRepositories(basePackages = "com.example.muchbetter")
 public class RedisConfig {

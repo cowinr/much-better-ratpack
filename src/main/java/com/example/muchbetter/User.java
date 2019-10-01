@@ -10,6 +10,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a user, an owner of a balance and a set of transactions. Created each time on login.
+ *
+ * @see com.example.muchbetter.RatpackConfig.LoginHandler
+ */
 @Data
 @RedisHash("User")
 public class User implements Serializable {
@@ -31,6 +36,12 @@ public class User implements Serializable {
         return transactions;
     }
 
+    /**
+     * Apply a transaction and update the user's balance.
+     *
+     * @param transaction The transaction to apply.
+     * @throws InsifficientFundsException If the transaction is greater than the remaining balance.
+     */
     public void applyTransaction(Transaction transaction) throws InsifficientFundsException {
         Assert.isTrue(transaction.getCurrency().equals(getCurrency()), "Transaction currency must match user's currency");
 

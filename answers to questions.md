@@ -117,12 +117,15 @@ Final set of tech used:
 ## What else to add?
 
 I'd take a look whether the following were useful:
+
+- How does Guice help?
+- Proper handling of model validation, e.g. how to send 400 errors if the `javax.validation` constraints are violated.
 - [Redis' reactive support in Spring Data](https://docs.spring.io/spring-data/redis/docs/2.1.10.RELEASE/reference/html/#redis:reactive).
-- Adding logging and metrics for debug support, troubleshooting and production monitoring
-- Load testing
-- Further unit and integration tests, especially to test the "non-happy" paths
-- More robust monetary amounts handling - maybe use something like [moneta](https://javamoney.github.io/ri.html)
-- Finish up adding the ingress to GKE
+- Adding logging and metrics for debug support, troubleshooting and production monitoring.
+- Load testing to get a feel for performance.
+- Further unit and integration tests, especially to test the "non-happy" paths.
+- More robust monetary amounts handling - maybe use something like [moneta](https://javamoney.github.io/ri.html).
+- Finish up adding the ingress to GKE.
 
 # 2. What was the most useful feature that was added to Java 8?
 _Please include a snippet of code that shows how you've used it._
@@ -136,8 +139,8 @@ Probably functional interfaces and lambda expressions. I note they are used heav
 
 leading to some very concise code.
 
-Removing boilerplate code like this is appealing as it can lead to more readable code. More readable code is, by definition,
-more easily maintainable code.
+Removing boilerplate code like this is appealing as it can lead to more readable code.
+More readable code is, by definition, more easily maintainable code.
 I also regularly use `lombok` and have previously used `kotlin` for this same reason.
 
 # 3. What is your favourite framework / library / package that you love but couldn't use in the task?
